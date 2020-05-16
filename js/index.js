@@ -1,6 +1,6 @@
 
-let $body = document.querySelector('body');
 let $gameboard = document.querySelector('#game-board');
+let score = 0;
 
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
@@ -18,7 +18,6 @@ class Game {
     this.car.$car.style.display = "block";
     this.render();
   }
-  // intialize game and start rendering the game continiously
 
   render() {
     document.addEventListener("keydown", event => {
@@ -72,8 +71,15 @@ class Obstacle {
     }
 render() {
   if(collisionDetectIon(this.$obstacle, this.$car)){
-    console.log("KABOEM!");
-  } else {
+    $gameboard.style.display = "none";
+    document.querySelector(".gameover").style.display = "block";
+    console.log("CRASH! Get driving lessons!");
+  } else if (this.$obstacle.offsetTop > ($gameboard.offsetTop + $gameboard.offsetHeight - (this.$obstacle.offsetHeight *2))){ //SCORE INCREASE WITH EVERY OBSTACLE THAT MADE IT TO THE BOTTOM
+    this.$obstacle.style.display = "none";
+    score += 1;
+    document.querySelector("#score").innerHTML = score;
+
+  }  else {
     this.$obstacle.style.top = `${this.$obstacle.offsetTop + 10}px`;
   }
 }
@@ -102,7 +108,7 @@ function collisionDetectIon($dom1, $dom2) {
         )) {
         return true;
     } else {
-        return false
+        return false;
     }
 
 }

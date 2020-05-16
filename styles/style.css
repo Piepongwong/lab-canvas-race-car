@@ -40,13 +40,10 @@ body button {
 
 #car {
   position: fixed;
-  top: 300px;
-  left: 975px;
-  width: 60px;
+  top: 275px;
+  width: 50px;
   display: none;
 }
-
-
 
 .obstacle {
   position: fixed;
@@ -54,4 +51,26 @@ body button {
   height: 30px;
   width: 80px;
   background-color: #870007;
+}
+
+.scoreboard {
+  float: left;
+  font-size: 30px;
+  color:black;
+  padding: 20px 40px;
+  margin: 20px;
+  left: 1100px;
+  width: 100px;
+  text-align: center;
+}
+
+.gameover {
+  position: fixed;
+  left: 70vh;
+  top: 20vw;
+  width: 350px;
+  padding: 50px;
+  display: none;
+  font-size: 30px;
+  color: #870007;
 }
