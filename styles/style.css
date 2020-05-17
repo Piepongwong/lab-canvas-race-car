@@ -41,7 +41,7 @@ body button {
 #car {
   position: fixed;
   top: 275px;
-  width: 50px;
+  width: 40px;
   display: none;
 }
 
@@ -49,24 +49,27 @@ body button {
   position: fixed;
   top: -100px;
   height: 30px;
-  width: 80px;
   background-color: #870007;
 }
 
 .scoreboard {
   float: left;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
   font-size: 30px;
-  color:black;
+  color: white;
   padding: 20px 40px;
   margin: 20px;
   left: 1100px;
-  width: 100px;
-  text-align: center;
+  width: 150px;
+  border-radius: 5px;
+  background-color: #870007;
 }
 
 .gameover {
   position: fixed;
-  left: 70vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  left: 80vh;
   top: 20vw;
   width: 350px;
   padding: 50px;

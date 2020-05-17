@@ -3,12 +3,16 @@ let $gameboard = document.querySelector('#game-board');
 let score = 0;
 
 window.onload = () => {
-  document.getElementById('start-button').onclick = () => {
+  let startButton = document.getElementById('start-button');
+  startButton.addEventListener("click", function() {
+    if (score !== 0){
+      location.reload();
+    }
     let game = new Game();
     game.start();
-  };
-
+  })
 };
+
 
 class Game {
   car = new Car();
@@ -27,10 +31,10 @@ class Game {
     this.obstacles.forEach((obstacle) => {
       obstacle.render(obstacle,this.car);
     })
-  },200)
+  },300)
   setInterval(()=> {
     this.obstacles.push(new Obstacle())
-    },2000)
+    },3000)
   }
 }
 
@@ -66,6 +70,7 @@ class Obstacle {
     this.$obstacle = document.createElement("div");
     this.$obstacle.setAttribute("class", "obstacle");
     $gameboard.appendChild(this.$obstacle);
+    this.$obstacle.style.width = (Math.random() * ($gameboard.offsetWidth / 2)) + "px";
     this.$obstacle.style.left = ($gameboard.offsetLeft + (Math.random() * ($gameboard.offsetWidth - this.$obstacle.offsetWidth))) + "px";
     this.$car = document.querySelector("#car");
     }
