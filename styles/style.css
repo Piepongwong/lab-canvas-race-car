@@ -46,6 +46,10 @@ body button {
   z-index: -1;
 }
 
+.hide{
+  visibility: hidden;
+}
+
 .score-display{
   position:fixed;
   top: -10px;

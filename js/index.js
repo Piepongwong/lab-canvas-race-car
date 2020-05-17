@@ -10,34 +10,24 @@ let $board = document.querySelector("#game-board");
 
 class Game {
   start(){
-    // Creation of the road
-    let $road = document.createElement("img");
-    $road.src = "./images/road.png";
-    $road.setAttribute("class", "road-img");
-    $board.appendChild($road);
-    // Creation of the score display
-    let $scoredisplay = document.createElement("p");
-    $scoredisplay.setAttribute("class", "score-display");
-    $board.appendChild($scoredisplay);
-    $scoredisplay.innerHTML = 'Score: ';
-    let $score = document.createElement("span");
-    $score.setAttribute("class", "score");
-    $scoredisplay.appendChild($score);
-    let score = 0;
-    $score.innerHTML = `${score}`;
+    let $road = document.querySelector(".road-img");
+    let $scoredisplay = document.querySelector(".score-display");
+    $road.classList.remove("hide");
+    $scoredisplay.classList.remove("hide");
     // Creation of the car and obstacles
     this.car = new Car();
     this.obstacles = new Obstacle();
+    let $score = document.querySelector(".score");
+    $score.innerHTML = 0;
   }
 }
 
 class Car {
   constructor(){
-    let $car = document.createElement("img");
+    let $car = document.querySelector(".car-img");
+    $car.classList.remove("hide");
+    $car.style.left = '875px';
     let $road = document.querySelector(".road-img");
-    $car.src = "./images/car.png";
-    $car.setAttribute("class", "car-img");
-    $board.appendChild($car);
     document.addEventListener("keydown", function(event){
       switch (event.key) {
           case "ArrowLeft":
