@@ -9,21 +9,28 @@ window.onload = () => {
 let $board = document.querySelector("#game-board");
 
 class Game {
+  constructor(){
+    this.car = new Car();
+    this.obstacles = new Obstacle();
+  }
   start(){
     let $road = document.querySelector(".road-img");
     let $scoredisplay = document.querySelector(".score-display");
     $road.classList.remove("hide");
     $scoredisplay.classList.remove("hide");
-    // Creation of the car and obstacles
-    this.car = new Car();
-    this.obstacles = new Obstacle();
+    this.render();
+  }
+
+  render(){
     let $score = document.querySelector(".score");
     $score.innerHTML = 0;
+    this.car.render();
+    this.obstacles.render();
   }
 }
 
 class Car {
-  constructor(){
+  render(){
     let $car = document.querySelector(".car-img");
     $car.classList.remove("hide");
     $car.style.left = '875px';
@@ -48,7 +55,10 @@ class Car {
 
 class Obstacle {
   constructor(){
-    let obstacles = [];
+    this.obstacles = [];
+  }
+
+  render(){
     let intervalId = setInterval(()=> {
       let $obstacle = document.createElement("div");
       let poolOfObstacles = ['obstacle75', 'obstacle100', 'obstacle125', 'obstacle150', 'obstacle175', 'obstacle200']
@@ -56,34 +66,36 @@ class Obstacle {
       $board.appendChild($obstacle);
       // Depending on the size of the obstacle it can appear from one side to the other of the road
       // One obstacle every 4 seconds
-      if ($obstacle.querySelector('.obstacle75')){
-        $obstacle.style.left = `${740+(Math.random() * 245)}px`;
-      } else if ($obstacle.querySelector('.obstacle100')){
-        $obstacle.style.left = `${740+(Math.random() * 220)}px`;
-      } else if ($obstacle.querySelector('.obstacle125')){
-        $obstacle.style.left = `${740+(Math.random() * 195)}px`;
-      } else if ($obstacle.querySelector('.obstacle150')){
-        $obstacle.style.left = `${740+(Math.random() * 170)}px`;
-      } else if ($obstacle.querySelector('.obstacle175')){
-        $obstacle.style.left = `${740+(Math.random() * 145)}px`;
+      this.obstacles.push($obstacle);
+      let nbOfObs = this.obstacles.length;
+      let lastObstacle = this.obstacles[nbOfObs-1];
+      if (lastObstacle === '.obstacle75'){
+        lastObstacle.style.left = `${740+(Math.random() * 245)}px`;
+      } else if (lastObstacle === '.obstacle100'){
+        lastObstacle.style.left = `${740+(Math.random() * 220)}px`;
+      } else if (lastObstacle === '.obstacle125'){
+        lastObstacle.style.left = `${740+(Math.random() * 195)}px`;
+      } else if (lastObstacle === '.obstacle150'){
+        lastObstacle.style.left = `${740+(Math.random() * 170)}px`;
+      } else if (lastObstacle === '.obstacle175'){
+        lastObstacle.style.left = `${740+(Math.random() * 145)}px`;
       } else {
-        $obstacle.style.left = `${740+(Math.random() * 120)}px`;
+        lastObstacle.style.left = `${740+(Math.random() * 120)}px`;
       }
-      obstacles.push($obstacle);
     },3000)
 
     // Obstacles are falling of 1px every 0.05sec
     setInterval(()=> {
       let $car = document.querySelector(".car-img");
       let $score = document.querySelector(".score");
-      obstacles.forEach(($obstacle)=> {
+      this.obstacles.forEach(($obstacle)=> {
         if(CollisionWall($obstacle, $car)){
           let $gameover = document.createElement("div");
           $gameover.setAttribute("class", "gameover");
           $gameover.innerHTML = `GAME OVER!... </br> Your final score: ${$score.innerHTML}`;
           $board.appendChild($gameover);
           clearInterval(intervalId);
-          obstacles = [];
+          this.obstacles = [];
         } 
         $obstacle.style.top = `${$obstacle.offsetTop + 1}px`;
       })
@@ -95,7 +107,7 @@ class Obstacle {
       let $car = document.querySelector(".car-img");
       let $score = document.querySelector(".score");
       let score = 0;
-      obstacles.forEach(($obstacle)=> {
+      this.obstacles.forEach(($obstacle)=> {
         if ($obstacle.offsetTop > $car.offsetTop + $car.height) {
           score += 1
           $score.innerHTML = `${score}`;
