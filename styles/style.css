@@ -36,3 +36,77 @@ body button {
     float: left;
     padding: 20px 0px;
 }
+
+.road-img{
+  position:fixed;
+  top: 0px;
+  left: 700px;
+  width: 400px;
+  height: 100%;
+  z-index: -1;
+}
+
+.hide{
+  visibility: hidden;
+}
+
+.score-display{
+  position:fixed;
+  top: -10px;
+  left: 760px;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.car-img{
+  position: fixed;
+  top: 80%;
+  left: 875px;
+  width: 50px;
+}
+
+.obstacle75, .obstacle100, .obstacle125, .obstacle150, .obstacle175, .obstacle200{
+  position: fixed;
+  top: -40px;
+  height: 40px;
+  background-color: #900C3F;
+}
+
+.obstacle75{
+  width: 75px;
+}
+.obstacle100{
+  width: 100px;
+}
+
+.obstacle125{
+  width: 125px;
+}
+
+.obstacle150{
+  width: 150px;
+}
+
+.obstacle175{
+  width: 175px;
+}
+
+.obstacle200{
+  width: 200px;
+}
+
+.gameover{
+  position: fixed;
+  top: 100px;
+  left: 700px;
+  width: 400px;
+  background-color: black;
+  color: red;
+  font-size: 30px;
+  line-height: 1.5;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 100px 0;
+}
