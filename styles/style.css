@@ -1,8 +1,12 @@
 body {
-  padding: 0;
   text-align: center;
 }
-
+body, html {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  overflow: hidden;
+}
 .game-intro {
   float: left;
   padding: 0% 10%;
@@ -32,7 +36,28 @@ body button {
   margin-bottom: 20px;
 }
 
+.road {
+  float: left;
+  height: 100vh;
+}
+
 #game-board {
-    float: left;
-    padding: 20px 0px;
+  float: left;
+  height: 100vh;
+  background-image: url("../images/road.png");
+  width: 500px;
+  background-size: 100% 100%;
+  position: relative;
+}
+
+#car {
+  width: 50px;
+  position: absolute;
+}
+
+.obstacle {
+  height: 50px;
+  background-color: black;
+  position: absolute;
+  z-index: 9999;
 }
